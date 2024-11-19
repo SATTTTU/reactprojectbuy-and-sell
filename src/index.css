@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.sticky{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    animation: fadeIn 0.9s;
+    padding: 10px;
+    z-index: 999;
+  }
+  @keyframes fadeIn{
+    0%{
+      transform: translateY(-100%);
+    }
+    100%{
+      transform: translateY(0%);
+    }
+  }
+  .name{
+    li:hover{
+        background-color: #72BF4F;
+        color: white;
+    }
+  }
+  /* Base styles for the header */
+
+/* Media query for phones (max-width: 640px) */
+@media (max-width: 640px) {
+  .first-header .container,
+  .stickyClass .container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .first-header .container .flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .first-header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .first-header nav ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .first-header .flex .text-xs {
+    text-align: center;
+  }
+
+  .first-header .relative {
+    margin-bottom: 0.5rem;
+  }
+
+  .stickyClass .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stickyClass .container .ml-auto {
+    margin: 1rem 0;
+  }
+
+  .stickyClass .container .flex {
+    justify-content: center;
+  }
+
+  .stickyClass .container form {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .stickyClass .container form input {
+    width: calc(100% - 3rem);
+  }
+
+  .stickyClass .container .ml-4 {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stickyClass .container .profile,
+  .stickyClass .container .cart {
+    margin: 0 0.5rem;
+  }
+}
+
+  
+  

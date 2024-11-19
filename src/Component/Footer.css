@@ -1,0 +1,96 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* Footer Styles */
+#footer {
+    background: #16A34A;
+}
+
+#footer h5 {
+    padding-left: 10px;
+    border-left: 3px solid #eeeeee;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+#footer a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+#footer ul.social {
+    list-style: none;
+    padding: 0;
+}
+
+#footer ul.social li {
+    display: inline;
+    margin: 0 5px;
+}
+
+#footer ul.social li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#footer ul.social li a i {
+    font-size: 25px;
+    transition: font-size 0.5s ease, margin-top 0.5s ease;
+}
+
+#footer ul.social li:hover a i {
+    font-size: 30px;
+    margin-top: -10px;
+}
+
+#footer ul.quick-links {
+    list-style: none;
+    padding: 0;
+}
+
+#footer ul.quick-links li {
+    padding: 3px 0;
+    transition: padding 0.5s ease, margin-left 0.5s ease, font-weight 0.5s ease;
+}
+
+#footer ul.quick-links li:hover {
+    padding: 3px 0;
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+#footer ul.quick-links li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#footer ul.quick-links li:hover a {
+    color: #eeeeee;
+}
+
+@media (max-width: 767px) {
+    #footer h5 {
+        padding-left: 0;
+        border-left: transparent;
+        padding-bottom: 0;
+        margin-bottom: 10px;
+    }
+}
+
+input[type="email"] {
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: black;
+}
+
+button[type="submit"] {
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
