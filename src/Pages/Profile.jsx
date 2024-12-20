@@ -1,38 +1,119 @@
-import React from 'react';
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import Sign from "./Sign";
+
 
 function Profile() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/api/v1/auth/register`,
+        { name, email, password, phone }
+      );
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/register");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error.response?.data?.message || "Something went wrong!";
+      toast.error(errorMessage);
+    }
+  };
+
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
-      <form className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
+        <h1 className="text-3xl font-semibold text-center text-gray-700 mb-6">Create an Account</h1>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm text-gray-600" htmlFor="fname">First name</label>
-            <input type="text" className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-green-500" id="fname" />
+            <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name</label>
+            <input
+              type="text"
+              id="name"
+              className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
           </div>
+
           <div>
-            <label className="block text-sm text-gray-600" htmlFor="lname">Last name</label>
-            <input type="text" className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-green-500" id="lname" />
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password</label>
+            <input
+              type="password"
+              id="password"
+              className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-600">Phone Number</label>
+            <input
+              type="number"
+              id="phone"
+              className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600"
+          >
+            Register
+          </button>
+        </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Already have an account? 
+            <Link to={'/Sign'}
+             
+              className="text-green-500 cursor-pointer hover:underline"
+            > Sign In</Link>
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            <span
+              onClick={() => navigate("/forgot-password")}
+              className="text-green-500 cursor-pointer hover:underline"
+            >Forgot Password?</span>
+          </p>
         </div>
-        <div>
-          <label className="block text-sm text-gray-600" htmlFor="email">Email address</label>
-          <input type="email" className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-green-500" id="email" />
-        </div>
-        <div>
-          <label className="block text-sm text-gray-600" htmlFor="password">Password</label>
-          <input type="password" className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-green-500" id="password" />
-        </div>
-        <div>
-          <label className="block text-sm text-gray-600" htmlFor="message">What do you want</label>
-          <textarea className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-green-500" id="message" cols={30} rows={5}></textarea>
-        </div>
-        <button type="submit" className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600">Login</button>
-      </form>
-      <div className="mt-4 text-center">
-        <a href="#" className="text-sm text-gray-600 hover:text-gray-900">Forgot your password?</a>
       </div>
+      <Routes>
+      <Route path="/Sign" element={<Sign/>}/>
+    </Routes>
     </div>
+   
   );
 }
 
